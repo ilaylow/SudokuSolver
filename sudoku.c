@@ -22,58 +22,22 @@ typedef struct{
   node_t *start, *end;
 }path_t;
 
-/*int puzzle[9][9] = {{1, 0, 0,     0, 0, 0,    4, 9, 0},
-                    {0, 0, 0,     0, 0, 0,    7, 0, 0},
-                    {3, 9, 6,     0, 5, 0,    0, 0, 0},
+\\ CHANGE THE PUZZLE TO MIMIC THIS
 
-                    {6, 0, 0,     9, 0, 0,    0, 0, 0},
-                    {0, 0, 0,     0, 7, 0,    0, 0, 0},
-                    {0, 4, 9,     0, 0, 1,    8, 2, 0},
+int puzzle[9][9] = {{0, 0, 0,     0, 7, 0,    1, 0, 0},
+                  {0, 0, 0,     5, 6, 0,    0, 0, 0},
+                  {0, 8, 0,     0, 2, 0,    0, 3, 0},
 
-                    {4, 0, 0,     0, 8, 7,    0, 0, 0},
-                    {0, 0, 3,     0, 0, 2,    0, 0, 5},
-                    {0, 0, 0,     0, 0, 0,    0, 0, 0}
-                  };*/
+                  {0, 0, 0,     0, 0, 0,    4, 9, 0},
+                  {0, 4, 0,     2, 5, 0,    0, 0, 8},
+                  {5, 0, 0,     9, 0, 0,    0, 0, 6},
 
-    int puzzle[9][9] = {{0, 0, 0,     0, 7, 0,    1, 0, 0},
-                        {0, 0, 0,     5, 6, 0,    0, 0, 0},
-                        {0, 8, 0,     0, 2, 0,    0, 3, 0},
+                  {4, 0, 6,     0, 0, 0,    0, 0, 0},
+                  {2, 0, 0,     0, 0, 0,    0, 0, 0},
+                  {7, 0, 0,     1, 9, 0,    8, 0, 0}
+                };
 
-                        {0, 0, 0,     0, 0, 0,    4, 9, 0},
-                        {0, 4, 0,     2, 5, 0,    0, 0, 8},
-                        {5, 0, 0,     9, 0, 0,    0, 0, 6},
-
-                        {4, 0, 6,     0, 0, 0,    0, 0, 0},
-                        {2, 0, 0,     0, 0, 0,    0, 0, 0},
-                        {7, 0, 0,     1, 9, 0,    8, 0, 0}
-                      };
-
-                 /*int puzzle[9][9] = {{5, 3, 0,     0, 7, 0,    0, 0, 0},
-                                      {6, 0, 0,     1, 9, 5,    0, 0, 0},
-                                      {0, 9, 8,     0, 0, 0,    0, 6, 0},
-
-                                      {8, 0, 0,     0, 6, 0,    0, 0, 3},
-                                      {4, 0, 0,     8, 0, 3,    0, 0, 1},
-                                      {7, 0, 0,     0, 2, 0,    0, 0, 6},
-
-                                      {0, 6, 0,     0, 0, 0,    2, 8, 0},
-                                      {0, 0, 0,     4, 1, 9,    0, 0, 5},
-                                      {0, 0, 0,     0, 8, 0,    0, 7, 9}
-                                    };*/
-
-/*int puzzle[9][9] ={{7, 2, 4,     6, 3, 5,    9, 1, 8},
-                   {1, 3, 5,     2, 9, 8,    6, 7, 4},
-                   {9, 8, 6,     7, 4, 1,    2, 3, 5},
-
-                   {3, 6, 7,     5, 2, 9,    8, 4, 1},
-                   {5, 9, 1,     4, 8, 7,    3, 6, 2},
-                   {0, 0, 0,     0, 0, 0,    5, 0, 0},
-
-                   {8, 0, 0,     0, 0, 0,    1, 5, 0},
-                   {0, 0, 0,     0, 0, 0,    0, 0, 6},
-                   {6, 7, 0,     9, 0, 0,    0, 2, 0}
-                };*/
-
+             
 int in_allowed(coords curr, coords *allow, int count);
 int **create_puzzle(int dimension);
 void solve_puzzle(int **puzzle, int dimension, coords *allow, int allow_count, int allow_pos);
@@ -115,12 +79,6 @@ int main(int argc, char *argv[]){
   assert(allow != NULL);
   allowed(newpuzzle, default_size, counter, allow);
 
-  /*for (int i = 0; i < *counter; i++){
-    printf("no allow i = %d   j = %d\n", allow[i].i, allow[i].j);
-  }*/
-
-  //printf("success\n");
-
   int valid = check_valid(newpuzzle, default_size, 0, 0);
 
   if (valid){
@@ -131,8 +89,6 @@ int main(int argc, char *argv[]){
   }
 
   int allow_count = *counter, allow_pos = 0;
-
-  //printf("counter = %d\n\n", *counter);
 
   printf("SOLVING PUZZLE\n\n");
   solve_puzzle(newpuzzle, default_size, allow, allow_count, allow_pos);

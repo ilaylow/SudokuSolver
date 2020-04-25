@@ -22,7 +22,7 @@ typedef struct{
   node_t *start, *end;
 }path_t;
 
-\\ CHANGE THE PUZZLE TO MIMIC THIS
+\\ CHANGE THE PUZZLE IN THIS ARRAY HERE
 
 int puzzle[9][9] = {{0, 0, 0,     0, 7, 0,    1, 0, 0},
                   {0, 0, 0,     5, 6, 0,    0, 0, 0},

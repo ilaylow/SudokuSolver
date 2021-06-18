@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <strings.h>
 #include <assert.h>
 
 #define VALID 1
@@ -22,20 +21,20 @@ typedef struct{
   node_t *start, *end;
 }path_t;
 
-\\ CHANGE THE PUZZLE IN THIS ARRAY HERE
+ /* CHANGE THE PUZZLE IN THIS ARRAY HERE */
 
-int puzzle[9][9] = {{0, 0, 0,     0, 7, 0,    1, 0, 0},
-                  {0, 0, 0,     5, 6, 0,    0, 0, 0},
-                  {0, 8, 0,     0, 2, 0,    0, 3, 0},
+int puzzle[9][9] = {{5, 3, 0,    0, 7, 0,    0, 0, 0},
+                   {6, 0, 0,     1, 9, 5,    0, 0, 0},
+                   {0, 9, 8,     0, 0, 0,    0, 6, 0},
 
-                  {0, 0, 0,     0, 0, 0,    4, 9, 0},
-                  {0, 4, 0,     2, 5, 0,    0, 0, 8},
-                  {5, 0, 0,     9, 0, 0,    0, 0, 6},
+                   {8, 0, 0,     0, 6, 0,    0, 0, 3},
+                   {4, 0, 0,     8, 0, 3,    0, 0, 1},
+                   {7, 0, 0,     0, 2, 0,    0, 0, 6},
 
-                  {4, 0, 6,     0, 0, 0,    0, 0, 0},
-                  {2, 0, 0,     0, 0, 0,    0, 0, 0},
-                  {7, 0, 0,     1, 9, 0,    8, 0, 0}
-                };
+                   {0, 6, 0,     0, 0, 0,    2, 8, 0},
+                   {0, 0, 0,     4, 1, 9,    0, 0, 5},
+                   {0, 0, 0,     0, 8, 0,    0, 7, 9}
+                  };
 
              
 int in_allowed(coords curr, coords *allow, int count);
@@ -204,9 +203,6 @@ node_t *prev_pos(path_t *path, int i, int j){
     temp = temp->next;
   }
 
-  //printf("temp i = %d   j = %d\n", temp->coord.i, temp->coord.j);
-  //printf("prev temp i = %d   j = %d\n\n", temp->prev->coord.i, temp->prev->coord.j);
-
   return temp->prev;
 }
 
@@ -267,14 +263,10 @@ void solve_puzzle(int **puzzle, int dimension, coords *allow, int allow_count, i
 
 int check_valid(int **puzzle, int dimension, int start_i, int start_j){
 
-  //printf("checking valid\n");
-  //printf("start_i = %d  start_j = %d\n\n", start_i, start_j);
-
   if (start_i == dimension){
     return VALID;
   }
-  //printf("checking valid\n");
-  //printf("i = %d  \n j = %d\n\n", start_i, start_j);
+
   if (puzzle[start_i][start_j] != 0){
 
     if (start_i < 3 && start_j < 3){    //left top box
@@ -283,8 +275,6 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
         for (int j = 0; j < 3; j++){
 
           if (puzzle[i][j] == puzzle[start_i][start_j] && (i != start_i || j != start_j)){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
@@ -295,8 +285,6 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
       for (int i = 0; i < 3; i++){
         for (int j = 3; j < 6; j++){
           if (puzzle[i][j] == puzzle[start_i][start_j] && (i != start_i || j != start_j)){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
@@ -307,8 +295,6 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
       for (int i = 0; i < 3; i++){
         for (int j = 6; j < 9; j++){
           if (puzzle[i][j] == puzzle[start_i][start_j] && (i != start_i || j != start_j)){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
@@ -319,8 +305,6 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
       for (int i = 3; i < 6; i++){
         for (int j = 0; j < 3; j++){
           if (puzzle[i][j] == puzzle[start_i][start_j] && (i != start_i || j != start_j)){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
@@ -331,8 +315,6 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
       for (int i = 3; i < 6; i++){
         for (int j = 3; j < 6; j++){
           if (puzzle[i][j] == puzzle[start_i][start_j] && (i != start_i || j != start_j)){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
@@ -343,8 +325,6 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
       for (int i = 3; i < 6; i++){
         for (int j = 6; j < 9; j++){
           if (puzzle[i][j] == puzzle[start_i][start_j] && (i != start_i || j != start_j)){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
@@ -355,8 +335,6 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
       for (int i = 6; i < 9; i++){
         for (int j = 0; j < 3; j++){
           if (puzzle[i][j] == puzzle[start_i][start_j] && (i != start_i || j != start_j)){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
@@ -367,8 +345,6 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
       for (int i = 6; i < 9; i++){
         for (int j = 3; j < 6; j++){
           if (puzzle[i][j] == puzzle[start_i][start_j] && (i != start_i || j != start_j)){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
@@ -379,8 +355,6 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
       for (int i = 6; i < 9; i++){
         for (int j = 6; j < 9; j++){
           if (puzzle[i][j] == puzzle[start_i][start_j] && (i != start_i || j != start_j)){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
@@ -394,16 +368,12 @@ int check_valid(int **puzzle, int dimension, int start_i, int start_j){
       if (i == start_i){
         for (int j = 0; j < dimension; j++){
           if (start_j != j && puzzle[i][j] == puzzle[start_i][start_j]){
-            //printf("i = %d   j = %d", i, j);
-
             return 0;
           }
         }
       }
       else{
         if (puzzle[i][start_j] == puzzle[start_i][start_j]){
-          //printf("i = %d   j = %d", i, start_j);
-
           return 0;
         }
       }
